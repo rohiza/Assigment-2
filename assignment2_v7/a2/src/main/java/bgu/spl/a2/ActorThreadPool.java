@@ -77,14 +77,11 @@ public class ActorThreadPool {
 	 *            actor's private state (actor's information)
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
-		mapOfActor.putIfAbsent(actorId,actorState);
-		mapOfQuese.putIfAbsent(actorId,new ConcurrentLinkedQueue());
-		mapOfLocks.putIfAbsent(actorId, new AtomicBoolean());
-		if(action instanceof Collection){
-			mapOfQuese.get(actorId).addAll((Collection)action);
-		}else{
-			mapOfQuese.get(actorId).add(action);
+		if(mapOfActor.putIfAbsent(actorId,actorState) ==null) {
+			mapOfQuese.putIfAbsent(actorId, new ConcurrentLinkedQueue());
+			mapOfLocks.putIfAbsent(actorId, new AtomicBoolean());
 		}
+		mapOfQuese.get(actorId).add(action);
 	}
 
 	/**

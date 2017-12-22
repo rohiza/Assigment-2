@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Promise<T> {
 	private T result;
 	private ConcurrentLinkedQueue<callback> callBackList = new ConcurrentLinkedQueue<>();
-	private AtomicBoolean hasBeenCalled;
+	private AtomicBoolean hasBeenCalled = new AtomicBoolean();
 
 
 	/**

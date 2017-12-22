@@ -45,8 +45,9 @@ public abstract class Action<R> {
         this.poolThreads = pool;
         this.actorId = actorId;
         this.actorState = actorState;
-        if(this.getResult().getCallBackList().isEmpty()){
+        if(callback == null){
             start();
+            actorState.addRecord(getActionName());
         }
         else{
             callback.call();
