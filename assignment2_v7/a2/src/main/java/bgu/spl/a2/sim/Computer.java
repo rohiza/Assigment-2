@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Computer {
-
+	public SuspendingMutex compMutex;
 	String computerType;
 	long failSig;
 	long successSig;
 
 	public Computer(String computerType) {
 		this.computerType = computerType;
+		this.compMutex = new SuspendingMutex(this);
 	}
 	
 	/**
@@ -47,6 +48,10 @@ public class Computer {
 
 	public String getComputerType() {
 		return computerType;
+	}
+
+	public SuspendingMutex getCompMutex() {
+		return compMutex;
 	}
 }
 
