@@ -10,6 +10,7 @@ public class addNewGrade  extends Action{
     public addNewGrade(Integer grade, String course){
         this.course = course;
         this.grade = grade;
+        setActionName("addNewGrade");
     }
 
     protected void start() {

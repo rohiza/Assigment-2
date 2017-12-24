@@ -58,11 +58,10 @@ public class Promise<T> {
 	 */
 	public void resolve(T value) {
 		if (hasBeenCalled.compareAndSet(false, true)) {
+			this.result = value;
 			while (!callBackList.isEmpty()) {
-
 				callBackList.poll().call();
 			}
-			this.result = value;
 			callBackList.clear();
 		}
 		else {

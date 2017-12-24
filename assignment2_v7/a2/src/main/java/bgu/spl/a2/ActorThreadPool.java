@@ -1,6 +1,5 @@
 package bgu.spl.a2;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -23,7 +22,6 @@ public class ActorThreadPool {
 	private ConcurrentHashMap<String, AtomicBoolean> mapOfLocks;
 	private Workers[] threads;
 	protected VersionMonitor vm = new VersionMonitor();
-	private AtomicBoolean shutdown;
 
 	/**
 	 * creates a {@link ActorThreadPool} which has nthreads. Note, threads
@@ -60,7 +58,7 @@ public class ActorThreadPool {
 	 * @param actorId actor's id
 	 * @return actor's private state
 	 */
-	public PrivateState getPrivaetState(String actorId){
+	public PrivateState getPrivateState(String actorId){
 		return mapOfActor.get(actorId);
 	}
 
@@ -77,11 +75,12 @@ public class ActorThreadPool {
 	 *            actor's private state (actor's information)
 	 */
 	public void submit(Action<?> action, String actorId, PrivateState actorState) {
-		if(mapOfActor.putIfAbsent(actorId,actorState) ==null) {
+		if(mapOfActor.putIfAbsent(actorId,actorState) == null) {
 			mapOfQuese.putIfAbsent(actorId, new ConcurrentLinkedQueue());
 			mapOfLocks.putIfAbsent(actorId, new AtomicBoolean());
 		}
 		mapOfQuese.get(actorId).add(action);
+		vm.inc();
 	}
 
 	/**
@@ -95,8 +94,9 @@ public class ActorThreadPool {
 	 *             if the thread that shut down the threads is interrupted
 	 */
 	public void shutdown() throws InterruptedException {
-		shutdown.compareAndSet(false,true);
-
+		for(Thread t: threads){
+			t.interrupt();
+		}
 	}
 
 
@@ -112,22 +112,23 @@ public class ActorThreadPool {
 
 	private class  Workers extends Thread{
 		public void run(){
-			while(!shutdown.get()){
-				int momentVerison = vm.getVersion();
+			while(!currentThread().isInterrupted()){
+				int momentVersion = vm.getVersion();
 				mapOfLocks.forEach((k,v)->{
 					if(v.compareAndSet(false, true) ) {
 						if(!mapOfQuese.get(k).isEmpty()) {
 							Action<?> task = (Action) mapOfQuese.get(k).poll();
-							PrivateState currentState = mapOfActor.get(k);
-							task.handle(ActorThreadPool.this, k, currentState);
-							mapOfActor.get(k).addRecord(task.getActionName());
+							task.handle(ActorThreadPool.this, k, getPrivateState(k));
 							v.compareAndSet(true,false);
 							vm.inc();
+						}
+						else{
+							v.compareAndSet(true,false);
 						}
 					}
 				});
 				try {
-					vm.await(momentVerison);
+					vm.await(momentVersion);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

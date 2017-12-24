@@ -11,6 +11,7 @@ public class addStudent extends Action {
 
     public  addStudent(String studentName){
         this.name = studentName;
+        setActionName("Add Student");
     }
 
     protected void start() {
@@ -20,10 +21,8 @@ public class addStudent extends Action {
         actions.add(open);
         sendMessage(open,name,newSPS);
         then(actions,()->{
-            if(actions.get(0).getResult().get()) {
                 ((DepartmentPrivateState) actorState).getStudentList().add(name);
                 complete(true);
-            }
         });
     }
 }

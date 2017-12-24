@@ -18,17 +18,17 @@ import java.util.concurrent.atomic.AtomicInteger;
  * methods
  */
 public class VersionMonitor {
-    private AtomicInteger versionMonitor;
+    private AtomicInteger versionMonitor = new AtomicInteger(0);
     public int getVersion() {
         return  versionMonitor.get();
     }
 
-    public void inc() {
+    public synchronized void inc() {
         versionMonitor.incrementAndGet();
         notifyAll();
     }
 
-    public void await(int version) throws InterruptedException {
+    public synchronized void await(int version) throws InterruptedException {
         while(versionMonitor.get() == version) {
             wait();
         }

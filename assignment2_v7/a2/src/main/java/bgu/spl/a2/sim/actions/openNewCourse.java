@@ -12,11 +12,12 @@ public class openNewCourse extends Action {
     private Integer numOfspace;
     private LinkedList<String> prerequisites ;
 
-    public openNewCourse(String deprtmantName,String courseName,Integer spaces , LinkedList pre){
-        this.deprtmantName = deprtmantName;
+    public openNewCourse(String departmantName,String courseName,Integer spaces , LinkedList pre){
+        this.deprtmantName = departmantName;
         this.courseName = courseName;
         this.numOfspace = spaces;
         this.prerequisites = pre;
+        setActionName("Open Course");
     }
 
     protected void start() {
@@ -28,10 +29,8 @@ public class openNewCourse extends Action {
         actions.add(open);
        sendMessage(open,courseName,newCPS);
        then(actions,()->{
-           if(actions.get(0).getResult().get()) {
                ((DepartmentPrivateState) actorState).getCourseList().add(courseName);
                complete(true);
-           }
        });
     }
 

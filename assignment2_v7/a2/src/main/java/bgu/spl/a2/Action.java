@@ -1,6 +1,7 @@
 package bgu.spl.a2;
 
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -21,7 +22,6 @@ public abstract class Action<R> {
     protected callback callback ;
     protected ActorThreadPool poolThreads;
     protected PrivateState actorState;
-
     /**
      * start handling the action - note that this method is protected, a thread
      * cannot call it directly.
@@ -69,15 +69,16 @@ public abstract class Action<R> {
     protected final void then(Collection<? extends Action<?>> actions, callback callback) {
         AtomicInteger numOfactions = new AtomicInteger(0);
         this.callback = callback;
-        actions.forEach((action) ->
-                getResult().subscribe(() -> {
-                    if (numOfactions.get() < actions.size())
-                        numOfactions.incrementAndGet();
-                    else {
-                        sendMessage(this, actorId, actorState);
-                    }
-
-                }));
+        for (Object a: actions) {
+            ((Action) a).getResult().subscribe(()->{
+            if (numOfactions.get() < actions.size()) {
+                numOfactions.incrementAndGet();
+            }
+            if(numOfactions.get() == actions.size()){
+                sendMessage(this, actorId, actorState);
+            }
+            });
+        }
     }
 
 
@@ -90,13 +91,15 @@ public abstract class Action<R> {
      * @param result - the action calculated result
      */
     protected final void complete(R result) {
-        this.promise.resolve(result);
+        this.getResult().resolve(result);
     }
 
     /**
      * @return action's promise (result)
      */
     public final Promise<R> getResult() {
+        if(promise == null)
+            promise = new Promise<>();
         return promise;
     }
 

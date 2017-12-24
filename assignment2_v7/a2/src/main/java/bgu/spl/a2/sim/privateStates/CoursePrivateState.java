@@ -14,15 +14,16 @@ public class CoursePrivateState extends PrivateState{
 	private Integer registered;
 	private List<String> regStudents;
 	private List<String> prequisites;
-	
+
 	/**
- 	 * Implementors note: you may not add other constructors to this class nor
+	 * Implementors note: you may not add other constructors to this class nor
 	 * you allowed to add any other parameter to this constructor - changing
 	 * this may cause automatic tests to fail..
 	 */
 	public CoursePrivateState() {
 		regStudents = new LinkedList<>();
 		prequisites = new LinkedList<>();
+		registered = new Integer(0);
 	}
 
 	public Integer getAvailableSpots() {
@@ -51,5 +52,9 @@ public class CoursePrivateState extends PrivateState{
 
 	public void setAvailableSpots(Integer availableSpots) {
 		this.availableSpots = availableSpots;
+	}
+
+	public void setRegistered(Integer registered) {
+		this.registered = registered;
 	}
 }

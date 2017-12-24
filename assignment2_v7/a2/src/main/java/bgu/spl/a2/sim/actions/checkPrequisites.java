@@ -12,13 +12,14 @@ public class checkPrequisites extends Action {
     public checkPrequisites(String studentName, List<String> prequisites){
         this.studentName = studentName;
         this.prequisites = prequisites;
+        setActionName("check Prequisites");
     }
 
     protected void start() {
         StudentPrivateState sps = ((StudentPrivateState)actorState);
         for(Object e: prequisites){
             String courseName = (String) e;
-            if(sps.getGrades().get(courseName) == null || sps.getGrades().get(courseName) < 56){
+            if(sps.getGrades().get(courseName) == null){
                 complete(false);
                 return;
             }

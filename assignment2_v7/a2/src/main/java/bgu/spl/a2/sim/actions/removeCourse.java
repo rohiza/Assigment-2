@@ -8,6 +8,7 @@ public class removeCourse extends Action {
 
     public removeCourse(String courseName){
         this.courseName = courseName;
+        setActionName("removeCourse");
     }
 
     protected void start() {
