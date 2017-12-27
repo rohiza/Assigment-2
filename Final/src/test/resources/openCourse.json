@@ -1,0 +1,67 @@
+{
+"threads": 8,
+"Computers" : [
+{
+"Type":"A",
+"Sig Success": "1234666",
+"Sig Fail": "999283"
+},
+{
+"Type":"B",
+"Sig Success": "4424232",
+"Sig Fail": "5555353"
+}],
+"Phase 1" : [
+{
+"Action":"Open Course",
+"Department": "Dep1",
+"Course": "Cou1",
+"Space": "20",
+"Prerequisites" : []
+},
+{
+"Action":"Open Course",
+"Department": "Dep1",
+"Course": "Cou2",
+"Space": "100",
+"Prerequisites" : ["A","B"]
+}],
+"Phase 2" : [
+{
+"Action":"Open Course",
+"Department": "Dep1",
+"Course": "Cou3",
+"Space": "0",
+"Prerequisites" : ["C"]
+},
+{
+"Action":"Open Course",
+"Department": "Dep1",
+"Course": "Cou4",
+"Space": "10",
+"Prerequisites" : ["D","G","J"]
+}],
+"Phase 3": [
+{
+"Action":"Open Course",
+"Department": "Dep2",
+"Course": "Cou5",
+"Space": "15",
+"Prerequisites" : ["1"]
+},
+{
+"Action":"Open Course",
+"Department": "Dep3",
+"Course": "Cou6",
+"Space": "18",
+"Prerequisites" : ["2","3"]
+},
+{
+"Action":"Open Course",
+"Department": "Dep4",
+"Course": "Cou7",
+"Space": "15",
+"Prerequisites" : ["1"]
+}
+]
+}

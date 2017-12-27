@@ -1,0 +1,330 @@
+{
+  "threads": 8,
+  "Computers": [
+    {
+      "Type": "1",
+      "Sig Success": 1,
+      "Sig Fail": -1
+    },
+    {
+      "Type": "2",
+      "Sig Success": 2,
+      "Sig Fail": -2
+    },
+    {
+      "Type": "3",
+      "Sig Success": 3,
+      "Sig Fail": -3
+    },
+    {
+      "Type": "4",
+      "Sig Success": 4,
+      "Sig Fail": -4
+    },
+    {
+      "Type": "5",
+      "Sig Success": 5,
+      "Sig Fail": -5
+    },
+    {
+      "Type": "6",
+      "Sig Success": 6,
+      "Sig Fail": -6
+    },
+    {
+      "Type": "7",
+      "Sig Success": 7,
+      "Sig Fail": -7
+    },
+    {
+      "Type": "8",
+      "Sig Success": 8,
+      "Sig Fail": -8
+    },
+    {
+      "Type": "9",
+      "Sig Success": 9,
+      "Sig Fail": -9
+    },
+    {
+      "Type": "10",
+      "Sig Success": 10,
+      "Sig Fail": -10
+    }
+  ],
+  "Phase 1": [
+    {
+      "Action": "Open Course",
+      "Department": "Dep1",
+      "Course": "A",
+      "Space": 10,
+      "Prerequisites": [ ],
+      "Number": 0
+    },
+    {
+      "Action": "Open Course",
+      "Department": "Dep1",
+      "Course": "B",
+      "Space": 5,
+      "Prerequisites": [ ],
+      "Number": 0
+    },
+    {
+      "Action": "Open Course",
+      "Department": "Dep2",
+      "Course": "C",
+      "Space": 5,
+      "Prerequisites": [
+        "A",
+        "B"
+      ],
+      "Number": 0
+    },
+    {
+      "Action": "Open Course",
+      "Department": "Dep2",
+      "Course": "D",
+      "Space": 5,
+      "Prerequisites": [
+        "A",
+        "B"
+      ],
+      "Number": 0
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep1",
+      "Space": 0,
+      "Number": 0,
+      "Student": "1"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep1",
+      "Space": 0,
+      "Number": 0,
+      "Student": "2"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep1",
+      "Space": 0,
+      "Number": 0,
+      "Student": "3"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep1",
+      "Space": 0,
+      "Number": 0,
+      "Student": "4"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "1"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "2"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "3"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "4"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "5"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "6"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "7"
+    },
+    {
+      "Action": "Add Student",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Student": "8"
+    }
+  ],
+  "Phase 2": [
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "56",
+        "57",
+        "57",
+        "56"
+      ],
+      "Number": 0,
+      "Student": "1",
+      "Preferences": [
+        "D",
+        "C",
+        "B",
+        "A"
+      ]
+    },
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "80",
+        "56"
+      ],
+      "Number": 0,
+      "Student": "2",
+      "Preferences": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "56",
+        "90",
+        "99"
+      ],
+      "Number": 0,
+      "Student": "3",
+      "Preferences": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "80",
+        "100",
+        "100"
+      ],
+      "Number": 0,
+      "Student": "3",
+      "Preferences": [
+        "C",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "100"
+      ],
+      "Number": 0,
+      "Student": "3",
+      "Preferences": [
+        "D"
+      ]
+    },
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "70",
+        "80"
+      ],
+      "Number": 0,
+      "Student": "5",
+      "Preferences": [
+        "B",
+        "C"
+      ]
+    },
+    {
+      "Action": "Register With Preferences",
+      "Space": 0,
+      "Grade": [
+        "80",
+        "57"
+      ],
+      "Number": 0,
+      "Student": "5",
+      "Preferences": [
+        "C",
+        "A"
+      ]
+    }
+  ],
+  "Phase 3": [
+    {
+      "Action": "Administrative Check",
+      "Department": "Dep1",
+      "Space": 0,
+      "Number": 0,
+      "Students": [
+        "1",
+        "2"
+      ],
+      "Conditions": [
+        "A"
+      ],
+      "Computer": "1"
+    },
+    {
+      "Action": "Administrative Check",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Students": [
+        "5"
+      ],
+      "Conditions": [
+        "B",
+        "A"
+      ],
+      "Computer": "2"
+    },
+    {
+      "Action": "Administrative Check",
+      "Department": "Dep2",
+      "Space": 0,
+      "Number": 0,
+      "Students": [
+        "3",
+        "4"
+      ],
+      "Conditions": [
+        "B",
+        "A"
+      ],
+      "Computer": "2"
+    }
+  ]
+}
